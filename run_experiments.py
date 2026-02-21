@@ -4,7 +4,7 @@ Run benchmark experiments with different strategies.
 Usage: python run_experiments.py
 """
 
-import subprocess
+
 import re
 
 STRATEGIES = ["always_local", "baseline", "complexity", "complexity_plus", "semantic", "validation", "combined", "smart_validation","complexity_semantic_plus"]
@@ -26,12 +26,8 @@ def set_strategy(strategy):
 
 def run_benchmark():
     """Run benchmark and capture output"""
-    result = subprocess.run(
-        ["python3", "benchmark.py"],
-        capture_output=True,
-        text=True
-    )
-    return result.stdout + result.stderr
+
+    pass
 
 def extract_score(output):
     """Extract the total score from benchmark output"""

@@ -2,7 +2,7 @@
 import sys, os
 import time
 
-sys.path.insert(0, "cactus/python/src")
+# sys.path.insert(0, "cactus/python/src")
 os.environ["CACTUS_NO_CLOUD_TELE"] = "1"
 
 import json

@@ -1,6 +1,4 @@
-# import pdb
-# import sys
-# sys.path.insert(0, "cactus/python/src")
+
 functiongemma_path = "cactus/weights/functiongemma-270m-it"
 
 import json, os, time, re
