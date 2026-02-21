@@ -1,5 +1,7 @@
 
 import sys, os
+import time
+
 sys.path.insert(0, "cactus/python/src")
 os.environ["CACTUS_NO_CLOUD_TELE"] = "1"
 
@@ -11,7 +13,7 @@ from main import generate_hybrid
 
 TOOL_GET_WEATHER = {
     "name": "get_weather",
-    "description": "Get current weather for a location",
+    "description": "Get weather or temperature for a city.",
     "parameters": {
         "type": "object",
         "properties": {
@@ -23,12 +25,12 @@ TOOL_GET_WEATHER = {
 
 TOOL_SET_ALARM = {
     "name": "set_alarm",
-    "description": "Set an alarm for a given time",
+    "description": "Set an alarm at a specific time.",
     "parameters": {
         "type": "object",
         "properties": {
-            "hour": {"type": "integer", "description": "Hour to set the alarm for"},
-            "minute": {"type": "integer", "description": "Minute to set the alarm for"},
+            "hour": {"type": "integer", "description": "Hour (0-23)"},
+            "minute": {"type": "integer", "description": "Minute (0-59)"},
         },
         "required": ["hour", "minute"],
     },
@@ -36,12 +38,12 @@ TOOL_SET_ALARM = {
 
 TOOL_SEND_MESSAGE = {
     "name": "send_message",
-    "description": "Send a message to a contact",
+    "description": "Send a text message to a person.",
     "parameters": {
         "type": "object",
         "properties": {
-            "recipient": {"type": "string", "description": "Name of the person to send the message to"},
-            "message": {"type": "string", "description": "The message content to send"},
+            "recipient": {"type": "string", "description": "Person name"},
+            "message": {"type": "string", "description": "Message text"},
         },
         "required": ["recipient", "message"],
     },
@@ -49,12 +51,12 @@ TOOL_SEND_MESSAGE = {
 
 TOOL_CREATE_REMINDER = {
     "name": "create_reminder",
-    "description": "Create a reminder with a title and time",
+    "description": "Create a reminder with topic and time.",
     "parameters": {
         "type": "object",
         "properties": {
-            "title": {"type": "string", "description": "Reminder title"},
-            "time": {"type": "string", "description": "Time for the reminder (e.g. 3:00 PM)"},
+            "title": {"type": "string", "description": "Reminder topic"},
+            "time": {"type": "string", "description": "Time (e.g. 3:00 PM)"},
         },
         "required": ["title", "time"],
     },
@@ -62,11 +64,11 @@ TOOL_CREATE_REMINDER = {
 
 TOOL_SEARCH_CONTACTS = {
     "name": "search_contacts",
-    "description": "Search for a contact by name",
+    "description": "Find a contact by name.",
     "parameters": {
         "type": "object",
         "properties": {
-            "query": {"type": "string", "description": "Name to search for"},
+            "query": {"type": "string", "description": "Person name"},
         },
         "required": ["query"],
     },
@@ -74,11 +76,11 @@ TOOL_SEARCH_CONTACTS = {
 
 TOOL_PLAY_MUSIC = {
     "name": "play_music",
-    "description": "Play a song or playlist",
+    "description": "Play a song or music.",
     "parameters": {
         "type": "object",
         "properties": {
-            "song": {"type": "string", "description": "Song or playlist name"},
+            "song": {"type": "string", "description": "Song or genre"},
         },
         "required": ["song"],
     },
@@ -86,11 +88,11 @@ TOOL_PLAY_MUSIC = {
 
 TOOL_SET_TIMER = {
     "name": "set_timer",
-    "description": "Set a countdown timer",
+    "description": "Set a countdown timer.",
     "parameters": {
         "type": "object",
         "properties": {
-            "minutes": {"type": "integer", "description": "Number of minutes"},
+            "minutes": {"type": "integer", "description": "Minutes"},
         },
         "required": ["minutes"],
     },
